@@ -148,14 +148,16 @@ def rename_entry(old_word,new_word):
 
 
 def load_dictionary():
-    global D
-    """add_entry("cake","an edible sweet bread")
-    add_entry("brother","an annoying person")
-    add_entry("chicken","an edible bird")
-    add_entry("mom","bad chef")"""
-    my_file=open("janany.dict","rb")
-    D=pickle.load(my_file)
-    print(D)
+     global D, load_from_file
+     if not load_from_file:
+          add_entry("cake","an edible sweet bread")
+          add_entry("brother","an annoying person")
+          add_entry("chicken","an edible bird")
+          add_entry("mom","bad chef")
+     else:
+         my_file=open("janany.dict","rb")
+         D=pickle.load(my_file)
+         print(D)
 
 
 def save_dictionary():
@@ -196,7 +198,7 @@ menu=[
        ["exit" , "x" , handle_exit]
     ]
     
-
+load_from_file = True
 D = {}
 load_dictionary()
 menu_loop()
